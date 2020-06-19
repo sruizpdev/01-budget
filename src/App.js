@@ -20,7 +20,7 @@ function App() {
 
       saveCreateExpense(false);
     }
-  }, [expense]);
+  }, [expense, createExpense, expenses, rest]);
 
   return (
     <div className="container">
