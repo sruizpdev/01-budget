@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import Error from './Error';
 
-const Question = () => {
+const Question = ({ saveBudget, saveRest }) => {
   const [quantity, saveQuantity] = useState(0);
   const [error, saveError] = useState(false);
 
@@ -9,20 +9,22 @@ const Question = () => {
     saveQuantity(parseInt(e.target.value));
   };
 
-  const saveBudget = (e) => {
+  const saveInitialBudget = (e) => {
     e.preventDefault();
     if (quantity < 1 || isNaN(quantity)) {
       saveError(true);
       return;
     }
     saveError(false);
+    saveBudget(quantity);
+    saveRest(quantity);
   };
 
   return (
     <Fragment>
       <h2>What is your budget?</h2>
       {error ? <Error message="Budget incorrect" /> : null}
-      <form onSubmit={saveBudget}>
+      <form onSubmit={saveInitialBudget}>
         <input
           type="number"
           className="u-full-width"
