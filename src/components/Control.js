@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
+import { checkBudget } from '../helpers';
 const Control = ({ budget, rest }) => (
   <Fragment>
     <div className="alert alert-primary">Budget: {budget} €</div>
-    <div className="alert">Rest: {rest} €</div>
+    <div className={checkBudget(budget, rest)}>Rest: {rest} €</div>
   </Fragment>
 );
 
